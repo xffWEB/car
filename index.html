@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="fonts/iconfont.css">
 </head>
 
 <body>
@@ -23,7 +24,73 @@
                 <li>保卖车</li>
             </ul>
         </header>
+        <main class="main">
+            <ul class="list">
+                <li>
+                    <dl>
+                        <dt><img src="img/1.png" alt=""></dt>
+                        <dd>
+                            <h5>雪佛兰</h5>
+                            <span class="year">2010</span>
+                            <p class="pri">4.7 <span>1.41</span>
+                            </p>
+                        </dd>
+                    </dl>
+                </li>
+            </ul>
+        </main>
+        <footer class="footer">
+            <dl>
+                <dt><i class="icon iconfont icon-user"></i></dt>
+                <dd>我</dd>
+            </dl>
+            <dl>
+                <dt><i class="icon iconfont icon-user"></i></dt>
+                <dd>我</dd>
+            </dl>
+            <dl>
+                <dt><i class="icon iconfont icon-user"></i></dt>
+                <dd>我</dd>
+            </dl>
+            <dl>
+                <dt><i class="icon iconfont icon-user"></i></dt>
+                <dd>我</dd>
+            </dl>
+            <dl>
+                <dt><i class="icon iconfont icon-user"></i></dt>
+                <dd>我</dd>
+            </dl>
+        </footer>
     </div>
+    <script src="js/zepto.js"></script>
+    <script>
+        $.ajax({
+            url: "data/data.json",
+            success: function(data) {
+                init(data);
+            }
+        })
+
+        function init(data) {
+            $.each(data, function(i, v) {
+                var str = `<li>
+                                <dl>
+                                    <dt><img src="${v.img}" alt=""></dt>
+                                    <dd>
+                                        <h5>${v.title}</h5>
+                                        <span class="year">${v.cont}</span>
+                                        <p class="pri">${v.price} <span>${v.one}</span>
+                                        </p>
+                                    </dd>
+                                </dl>
+                            </li>`;
+                $('.list').append(str);
+            })
+        }
+        $('.footer dl').on('click', function() {
+            $(this).addClass('ac').siblings().removeClass('ac');
+        })
+    </script>
 </body>
 
 </html>
